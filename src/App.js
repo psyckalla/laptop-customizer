@@ -49,14 +49,9 @@ class App extends Component {
         selectedState={this.state.selected} 
         feature={feature} idx={idx} 
         selectedStateFeature={this.state.selected[feature]}/>});
-     
-    const total = Object.keys(this.state.selected).reduce(
-      (acc, curr) => acc + this.state.selected[curr].cost,
-      0
-    );
 
     return (
-      <RenderAppSections total={total} features={features} summary={summary} />
+      <RenderAppSections selectedState={this.state.selected} features={features} summary={summary} />
     );
   }
 }

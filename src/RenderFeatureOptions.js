@@ -1,6 +1,7 @@
 import React from 'react';
 import slugify from 'slugify';
-import CurrencyFormat from './CurrencyFormat';
+import FeatureItem from './FeatureItem';
+
 
 function RenderFeatureOptions(props) {
     const { feature, idx, individualFeature, updateFeature, selectedState } = props;
@@ -8,19 +9,25 @@ function RenderFeatureOptions(props) {
     const options = individualFeature.map(item => {
       const itemHash = slugify(JSON.stringify(item));
       return (
-        <div key={itemHash} className="feature__item">
-          <input
-            type="radio"
-            id={itemHash}
-            className="feature__option"
-            name={slugify(feature)}
-            checked={item.name === selectedState.name}
-            onChange={e => updateFeature(feature, item)}
-          />
-          <label htmlFor={itemHash} className="feature__label">
-            {item.name} <CurrencyFormat amount={item.cost} />
-          </label>
-        </div>
+        // <div key={itemHash} className="feature__item">
+        //   <input
+        //     type="radio"
+        //     id={itemHash}
+        //     className="feature__option"
+        //     name={slugify(feature)}
+        //     checked={item.name === selectedState.name}
+        //     onChange={e => updateFeature(feature, item)}
+        //   />
+        //   <label htmlFor={itemHash} className="feature__label">
+        //     {item.name} <CurrencyFormat amount={item.cost} />
+        //   </label>
+        // </div>
+        <FeatureItem 
+          itemHash={itemHash}
+          feature={feature} 
+          item={item}
+          selectedState={selectedState}
+          updateFeature={updateFeature}/>
       );
     });
 

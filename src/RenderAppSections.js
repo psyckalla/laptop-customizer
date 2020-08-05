@@ -1,28 +1,22 @@
 import React from 'react';
-import CurrencyFormat from './CurrencyFormat';
+import MainSummary from './MainSummary.js';
+import MainForm from './MainForm';
 
 function RenderAppSections(props) {
-    const { features, summary, total } = props;
+    const { features, summary, selectedState} = props;
+
+    const total = Object.keys(selectedState).reduce(
+      (acc, curr) => acc + selectedState[curr].cost,
+      0
+    );
     return (
         <div className="App">
         <header>
           <h1>ELF Computing | Laptops</h1>
         </header>
         <main>
-          <form className="main__form">
-            <h2>Customize your laptop</h2>
-            {features}
-          </form>
-          <section className="main__summary">
-            <h2>Your cart</h2>
-            {summary}
-            <div className="summary__total">
-              <div className="summary__total__label">Total</div>
-              <div className="summary__total__value">
-              <CurrencyFormat amount={total} />
-              </div>
-            </div>
-          </section>
+          <MainForm features={features} />
+          <MainSummary summary={summary} total={total} />
         </main>
       </div>
     )
